@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel {
-
     public GamePanel(){
         this.setPreferredSize(new Dimension(512, 512));
         repaint();

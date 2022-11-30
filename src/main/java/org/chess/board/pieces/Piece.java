@@ -3,27 +3,26 @@ package org.chess.board.pieces;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
 public class Piece {
-    public int realXPosition;
-    public int realYPosition;
-    public int xPosition;
-    public int yPosition;
+    public int xFieldPosition; // from 1 to 8
+    public int yFieldPosition; // ^^
+    public int realMouseXPosition; // from 1 to 512
+    public int realMouseYPosition; // ^^
 
     public boolean isWhite; // Im using other colors than white, but this is for reference.
     public static LinkedList<Piece> pieces = new LinkedList<>();
     public String pieceType;
     public Piece(){
     }
-    public Piece(int realXPosition, int realYPosition, boolean isWhite, String pieceType, LinkedList<Piece> pieces) {
-        this.realXPosition = realXPosition;
-        this.realYPosition = realYPosition;
-        this.xPosition = realXPosition * 64;
-        this.yPosition = realYPosition * 64;
+    public Piece(int xFieldPosition, int yFieldPosition, boolean isWhite, String pieceType, LinkedList<Piece> pieces) {
+        this.xFieldPosition = xFieldPosition;
+        this.yFieldPosition = yFieldPosition;
+        this.realMouseXPosition = xFieldPosition * 64;
+        this.realMouseYPosition = yFieldPosition * 64;
         this.isWhite = isWhite;
         this.pieceType = pieceType;
         this.pieces = pieces;
@@ -32,7 +31,7 @@ public class Piece {
 
     public void move(int xPosition, int yPosition){
         for(Piece p: pieces){
-            if(p.realXPosition == xPosition && p.realYPosition == yPosition){
+            if(p.xFieldPosition == xPosition && p.yFieldPosition == yPosition){
                 p.killThePiece();
             }
         }
@@ -87,7 +86,7 @@ public class Piece {
             if(!p.isWhite){
                 index += 6;
             }
-            g.drawImage(images[index], p.xPosition, p.yPosition, null);
+            g.drawImage(images[index], p.realMouseXPosition, p.realMouseYPosition, null);
         }
     }
 
@@ -96,7 +95,7 @@ public class Piece {
         int yp = y / 64;
 
         for (Piece p: pieces){
-            if (p.realXPosition == xp && p.realYPosition == yp){
+            if (p.xFieldPosition == xp && p.yFieldPosition == yp){
                 return p;
             }
         }
