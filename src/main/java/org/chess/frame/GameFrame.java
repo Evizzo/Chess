@@ -1,7 +1,7 @@
 package org.chess.frame;
 
 import org.chess.panel.GamePanel;
-import org.chess.board.pieces.Piece;
+import org.chess.players.Players;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -9,23 +9,14 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 
-import static org.chess.panel.GamePanel.pieces;
+import static org.chess.board.pieces.Piece.getPiece;
+
 
 public class GameFrame extends JFrame {
     GamePanel panel;
-    static final Dimension SCREEN_SIZE = new Dimension(512,512);
-    public static Piece getPiece(int x, int y){
-        int xp = x / 64;
-        int yp = y / 64;
+    static final Dimension SCREEN_SIZE = new Dimension(512, 512);
 
-        for (Piece p: pieces){
-            if (p.realXPosition == xp && p.realYPosition == yp){
-                return p;
-            }
-        }
-        return null;
-    }
-    public GameFrame(){
+    public GameFrame() {
         panel = new GamePanel();
         this.add(panel);
         this.setTitle("Chess");
@@ -75,4 +66,5 @@ public class GameFrame extends JFrame {
             }
         });
     }
+
 }
