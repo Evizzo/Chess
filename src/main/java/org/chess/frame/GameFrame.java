@@ -1,7 +1,7 @@
 package org.chess.frame;
 
 import org.chess.panel.GamePanel;
-import org.chess.pieces.Piece;
+import org.chess.board.pieces.Piece;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -33,6 +33,7 @@ public class GameFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(SCREEN_SIZE);
         this.setLocationRelativeTo(null);
+        this.pack();
         this.setVisible(true);
 
         this.addMouseListener(new MouseListener() {

@@ -1,4 +1,4 @@
-package org.chess.pieces;
+package org.chess.board.pieces;
 
 import java.util.LinkedList;
 

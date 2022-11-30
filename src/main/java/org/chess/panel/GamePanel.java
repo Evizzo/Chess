@@ -1,6 +1,6 @@
 package org.chess.panel;
 
-import org.chess.pieces.Piece;
+import org.chess.board.pieces.Piece;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,6 +12,8 @@ import java.util.LinkedList;
 
 public class GamePanel extends JPanel {
     public GamePanel(){
+        this.setPreferredSize(new Dimension(512, 512));
+
         repaint();
     }
     public static LinkedList<Piece> pieces = new LinkedList<>();
