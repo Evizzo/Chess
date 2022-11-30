@@ -35,7 +35,8 @@ public class GameFrame extends JFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.out.println(getPiece(e.getX(), e.getY()).pieceType);
+                System.out.println(e.getX() + " " + e.getY());
+                System.out.println(getPiece(e.getX(), e.getY()-36).pieceType);
             }
 
             @Override
