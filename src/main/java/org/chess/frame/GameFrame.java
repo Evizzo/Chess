@@ -1,7 +1,7 @@
 package org.chess.frame;
 
+import org.chess.board.pieces.Piece;
 import org.chess.panel.GamePanel;
-import org.chess.players.Players;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -9,12 +9,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 
-import static org.chess.board.pieces.Piece.getPiece;
-
-
 public class GameFrame extends JFrame {
     GamePanel panel;
     static final Dimension SCREEN_SIZE = new Dimension(512, 512);
+    public static Piece selectedPiece = null;
 
     public GameFrame() {
         panel = new GamePanel();
@@ -35,13 +33,13 @@ public class GameFrame extends JFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                System.out.println(e.getX() + " " + e.getY());
-                System.out.println(getPiece(e.getX(), e.getY()-36).pieceType);
+                selectedPiece = Piece.getPiece(e.getX(), e.getY() - 36);
             }
-
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                int getY = e.getY() - 36;
+                selectedPiece.move(e.getX() / 64, getY / 64);
+                panel.repaint();
             }
 
             @Override
@@ -58,7 +56,11 @@ public class GameFrame extends JFrame {
         this.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
-
+                if (selectedPiece != null){
+                    selectedPiece.realMouseXPosition = e.getX() - 36;
+                    selectedPiece.realMouseYPosition = e.getY() - 69;
+                    panel.repaint();
+                }
             }
 
             @Override

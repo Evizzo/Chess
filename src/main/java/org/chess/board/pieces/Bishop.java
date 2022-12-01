@@ -9,6 +9,5 @@ public class Bishop {
 
         Piece wBishop = new Piece(2, 7, true, "bishop", pieces);
         Piece wBishop2 = new Piece(5, 7, true, "bishop", pieces);
-
     }
 }

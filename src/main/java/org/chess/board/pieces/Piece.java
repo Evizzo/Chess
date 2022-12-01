@@ -29,25 +29,25 @@ public class Piece {
         pieces.add(this);
     }
 
-    public void move(int xPosition, int yPosition){
-        for(Piece p: pieces){
-            if(p.xFieldPosition == xPosition && p.yFieldPosition == yPosition){
-                p.killThePiece();
+    public void move(int xPosition, int yPosition) {
+        if (getPiece(xPosition * 64, yPosition * 64) != null) {
+            if (getPiece(xPosition * 64, yPosition * 64).isWhite != isWhite) {
+                getPiece(xPosition * 64, yPosition * 64).killThePiece();
+            } else {
+                realMouseXPosition = this.xFieldPosition * 64;
+                realMouseYPosition = this.yFieldPosition * 64;
+                return;
             }
         }
+        this.xFieldPosition = xPosition;
+        this.yFieldPosition = yPosition;
+        realMouseXPosition = xPosition * 64;
+        realMouseYPosition = yPosition * 64;
     }
-
     public void killThePiece(){
         pieces.remove(this);
     }
     public void drawAllThePIeces(Graphics g){
-        new Pawn();
-        new Rook();
-        new Knight();
-        new Bishop();
-        new King();
-        new Queen();
-
         BufferedImage piecePack = null;
         try {
             piecePack = ImageIO.read(new File("src/main/resources/chess.png"));

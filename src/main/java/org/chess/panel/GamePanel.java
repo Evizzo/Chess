@@ -9,6 +9,12 @@ import java.awt.*;
 public class GamePanel extends JPanel {
     public GamePanel(){
         this.setPreferredSize(new Dimension(512, 512));
+        new Pawn();
+        new Rook();
+        new Knight();
+        new Bishop();
+        new King();
+        new Queen();
         repaint();
     }
     @Override
